@@ -4,6 +4,7 @@ const React = require('react');
 
 var About = (props) =>
 	<div>
-		<h3>About...</h3>
+		<h1>About...</h1>
+		<p>Learning example by M.Carbone</p>
 	</div>
 module.exports = About;
