@@ -9,6 +9,10 @@ const Home = require('home');
 const About = require('about'); 
 const Examples = require('examples');
 
+// load foundation
+require ('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css');
+$(document).foundation();
+
 // var objOne = {
 // 	name: 'Matteo',
 // 	location: 'NYC'
