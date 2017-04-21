@@ -34,7 +34,7 @@ module.exports = {
             examples: './app/pages/examples.jsx',
             appform: './shared/app-form.jsx',
             services: './app/services/api.jsx',
-            appStyles: './app/styles/app.css'
+            appStyles: './app/styles/app.scss'
         },
 
         extensions: [".js", ".jsx", ".js"]

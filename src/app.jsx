@@ -14,7 +14,7 @@ require ('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css')
 $(document).foundation();
 
 // app.css
-require ('style-loader!css-loader!appStyles');
+require ('style-loader!css-loader!sass-loader!appStyles');
 
 // var objOne = {
 // 	name: 'Matteo',
