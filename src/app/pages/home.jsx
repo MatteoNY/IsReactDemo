@@ -19,13 +19,15 @@ var Home = React.createClass({
 
 		this.setState({
 			isLoading: true,
-			errorMessage: undefined
+			location: undefined,
+			errorMessage: undefined,
+			msg: undefined
 		})
 
 		//	Services.ciao (payload.location);
 
 		Services.getTemp(payload.location).then(function (res) {
-			console.log ("res? " + res);
+			//	console.log ("res? " + res);
 			self.setState({
 				location: payload.location,
 				msg: res,
@@ -33,20 +35,49 @@ var Home = React.createClass({
 			});
 		}, function (error) {
 
-//console.log("~~~~~~ error: " + error);
+			//console.log("~~~~~~ error: " + error);
 			self.setState({
 				isLoading: false,
-				errorMessage: error.data.message
+				errorMessage: error.message
 			})
-				
+
 		});
+
+	},
+	componentWillReceiveProps: function (newProps) {
+		var location = newProps.location.query.location;
+
+		if (location && location.length > 0) {
+			this.handleSearch(location);
+			window.location.hash = '#/';
+		}
+	},
+	componentDidMount: function () {
+		// querystring
+		let payload = {};
+
+		//	var zp = this.props.qs;
+		//	var { qs } = this.state;
+		//  var { location, query } = this.props;
+		var location = this.props.location.query.location;
+
+
+		//console.log("xx " + location);
+
+
+		if (location && location.length > 0) {
+			payload.location = location;
+		//	console.log("paylaod ", payload);
+			this.handleSearch(payload);
+			window.location.hash = '#/';
+		}
 
 	},
 
 	render: function () {
 		var { isLoading, location, msg, errorMessage } = this.state;
 
-		console.log ("errorMessage " + errorMessage);
+		//	console.log ("errorMessage " + errorMessage);
 
 		function renderMessage() {
 
@@ -59,7 +90,7 @@ var Home = React.createClass({
 		function renderError() {
 			if (typeof errorMessage === 'string') {
 				return (
-					<ErrorModal message={errorMessage}/>
+					<ErrorModal message={errorMessage} />
 				)
 			}
 		}
