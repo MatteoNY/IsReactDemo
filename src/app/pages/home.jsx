@@ -4,6 +4,8 @@ const AppForm = require('appform');
 const AppMsg = require('./shared/app-message');
 const Services = require('../services/api');
 
+const ErrorModal = require('./shared/errorModal');
+
 // container component!!!!
 var Home = React.createClass({
 
@@ -16,35 +18,49 @@ var Home = React.createClass({
 		var self = this;
 
 		this.setState({
-			isLoading: true
+			isLoading: true,
+			errorMessage: undefined
 		})
 
 		//	Services.ciao (payload.location);
 
 		Services.getTemp(payload.location).then(function (res) {
+			console.log ("res? " + res);
 			self.setState({
 				location: payload.location,
 				msg: res,
 				isLoading: false
 			});
-		}, function (err) {
+		}, function (error) {
+
+console.log("~~~~~~ error: " + error);
 			self.setState({
-				isLoading: false
+				isLoading: false,
+				errorMessage: error.message
 			})
-			alert("Opps!!! error " + err);
+				
 		});
 
 	},
 
 	render: function () {
-		var { isLoading, location, msg } = this.state;
+		var { isLoading, location, msg, errorMessage } = this.state;
+
+		console.log ("errorMessage " + errorMessage);
 
 		function renderMessage() {
 
 			if (isLoading) {
-				return <h3 className="text-center">Loading... </h3>;
+				return <h3 className="text-center">Updating... </h3>;
 			} else if (msg && location) {
 				return <AppMsg location={location} msg={msg} />;
+			}
+		}
+		function renderError() {
+			if (typeof errorMessage === 'string') {
+				return (
+					<ErrorModal message={errorMessage}/>
+				)
 			}
 		}
 
@@ -55,6 +71,7 @@ var Home = React.createClass({
 				<AppForm onSearch={this.handleSearch} />
 				<div>
 					{renderMessage()}
+					{renderError()}
 				</div>
 				{/* jsx comment */}
 
