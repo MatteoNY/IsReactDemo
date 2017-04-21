@@ -42,7 +42,7 @@ var Home = React.createClass({
 		function renderMessage() {
 
 			if (isLoading) {
-				return <h3>Loading... </h3>;
+				return <h3 className="text-center">Loading... </h3>;
 			} else if (msg && location) {
 				return <AppMsg location={location} msg={msg} />;
 			}
@@ -51,7 +51,7 @@ var Home = React.createClass({
 		return (
 
 			<div>
-				<h1>Home</h1>
+				<h1 className="text-center">Get Weather</h1>
 				<AppForm onSearch={this.handleSearch} />
 				<div>
 					{renderMessage()}

@@ -7,7 +7,7 @@ var AppMessage = (props) => {
    var { location, msg } = props;
     return (
       <div>
-        <h1>Ciao! {location} You're temp: {msg}</h1>
+        <h2 className="text-center">Ciao! {location} You're temp: {msg}</h2>
       </div>
     );
 	 
