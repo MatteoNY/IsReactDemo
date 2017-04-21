@@ -33,7 +33,8 @@ module.exports = {
             about: './app/pages/about.jsx',
             examples: './app/pages/examples.jsx',
             appform: './shared/app-form.jsx',
-            services: './app/services/api.jsx'
+            services: './app/services/api.jsx',
+            appStyles: './app/styles/app.css'
         },
 
         extensions: [".js", ".jsx", ".js"]

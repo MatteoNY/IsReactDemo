@@ -33,10 +33,10 @@ var Home = React.createClass({
 			});
 		}, function (error) {
 
-console.log("~~~~~~ error: " + error);
+//console.log("~~~~~~ error: " + error);
 			self.setState({
 				isLoading: false,
-				errorMessage: error.message
+				errorMessage: error.data.message
 			})
 				
 		});
@@ -67,7 +67,7 @@ console.log("~~~~~~ error: " + error);
 		return (
 
 			<div>
-				<h1 className="text-center">Get Weather</h1>
+				<h1 className="text-center page-title">Get Weather</h1>
 				<AppForm onSearch={this.handleSearch} />
 				<div>
 					{renderMessage()}

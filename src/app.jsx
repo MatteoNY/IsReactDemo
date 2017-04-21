@@ -13,6 +13,9 @@ const Examples = require('examples');
 require ('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css');
 $(document).foundation();
 
+// app.css
+require ('style-loader!css-loader!appStyles');
+
 // var objOne = {
 // 	name: 'Matteo',
 // 	location: 'NYC'
